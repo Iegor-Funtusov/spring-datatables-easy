@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Department</title>
+</head>
+<body>
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white">
+        Departments
+    </div>
+    <div class="card-body table-responsive">
+        <form action="#" th:action="@{/department/list}" method="post">
+            <table class="table table-striped table-bordered table-sm datatables-easy"
+                   th:attr="dt-page=${T(org.springframework.data.jpa.datatables.easy.util.JsonUtil).json(departmentPage)}">
+                <thead>
+                <tr>
+                    <th dt-field="id">id</th>
+                    <th dt-field="createTime">Create Time</th>
+                    <th dt-field="updateTime">Update Time</th>
+                    <th dt-field="name" dt-type="string">Name</th>
+                    <th dt-field="employee.id" dt-orderable="false">Employees</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="department,iter : ${departmentList}" role="row" class="odd">
+                    <td th:text="${department.id}">id</td>
+                    <td th:text="${#dates.format(department.createTime, 'yyyy-MM-dd HH:mm:ss')}">Create Time</td>
+                    <td th:text="${#dates.format(department.updateTime, 'yyyy-MM-dd HH:mm:ss')}">Update Time</td>
+                    <td th:text="${department.name}">Name</td>
+                    <td>
+                    	<a th:href="@{/employee/list/__('?filter_department.id='+${department.id})__&size=5&order=salary_desc&clear=1}">See top 5 by salary</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
