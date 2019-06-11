@@ -46,7 +46,7 @@ public abstract class EasyDatatablesListController<T> {
 		model.addAttribute(getListCode() + "List", dto.getData());
 		model.addAttribute(getListCode() + "Page", pageData);
 
-		return "/" + getListCode() + "/list";
+		return getListCode() + "/list";
 	}
 
 	private PageData updatePageData(WebRequest webRequest) {
