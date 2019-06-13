@@ -14,24 +14,18 @@
     <properties>
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
-        <spring.web>5.1.7.RELEASE</spring.web>
-        <lombok>1.18.8</lombok>
         <darrachequesne.datatables>5.0.0</darrachequesne.datatables>
-        <commons.lang3>3.0</commons.lang3>
-        <maven.resources.plugin>2.6</maven.resources.plugin>
-        <maven.source.plugin>3.0.1</maven.source.plugin>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring.web}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -42,7 +36,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons.lang3}</version>
         </dependency>
     </dependencies>
 
@@ -60,7 +53,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven.resources.plugin}</version>
                 <configuration>
                     <encoding>${encoding}</encoding>
                 </configuration>
@@ -68,7 +60,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven.source.plugin}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
