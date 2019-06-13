@@ -1,8 +1,7 @@
-package org.springframework.data.jpa.datatables.easy.demo.service;
+package org.springframework.data.jpa.datatables.easy.service;
 
 import org.springframework.data.jpa.datatables.easy.data.DataTablesData;
 import org.springframework.data.jpa.datatables.easy.data.PageData;
-import org.springframework.data.jpa.datatables.easy.service.EasyDatatablesListService;
 import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.data.jpa.datatables.repository.DataTablesRepository;
 import org.springframework.stereotype.Service;
