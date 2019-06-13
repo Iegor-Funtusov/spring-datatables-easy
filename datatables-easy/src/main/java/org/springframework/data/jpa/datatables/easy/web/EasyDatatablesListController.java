@@ -38,18 +38,18 @@ public abstract class EasyDatatablesListController<T> {
 			DataTablesData<T> data = toDataTablesInput(pageData);
 			dto = getEasyDatatablesListService().getDataTablesOutput(data, getDataTableRepository());
 		} else {
-			// this implementation does not use jpa
 			dto = getEasyDatatablesListService().getDataTablesOutput(pageData);
 		}
 
 		DataTablesUtil.updatePageData(pageData, dto.getRecordsFiltered());
+		
 		model.addAttribute(getListCode() + "List", dto.getData());
 		model.addAttribute(getListCode() + "Page", pageData);
 
 		return getListCode() + "/list";
 	}
 
-	private PageData updatePageData(WebRequest webRequest) {
+	protected PageData updatePageData(WebRequest webRequest) {
 		PageData pd = getPageData();
 		if (webRequest.getParameter("clear") != null) {
 			pd.clear();
@@ -80,11 +80,11 @@ public abstract class EasyDatatablesListController<T> {
 		return pd;
 	}
 
-	private PageData getPageData() {
+	protected PageData getPageData() {
 		return sessionData.getOrCreatePageData(this.getClass(), DEFAULT_PAGE_SIZE);
 	}
 
-	private DataTablesData<T> toDataTablesInput(PageData pd) {
+	protected DataTablesData<T> toDataTablesInput(PageData pd) {
 		DataTablesInput i = new DataTablesInput();
 		Map<String, String> specificValueMap = new HashMap<>();
 
@@ -136,7 +136,7 @@ public abstract class EasyDatatablesListController<T> {
 		return data;
 	}
 
-	private Column initColumns(String columnName, String searchValue) {
+	protected Column initColumns(String columnName, String searchValue) {
 		Column column = new Column();
 		column.setSearchable(true);
 		column.setOrderable(true);
