@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @Service
 @Slf4j
@@ -42,7 +43,7 @@ public class NameDictService {
     private void readFile(NameDict d, boolean firstName, boolean toUpperCase) throws IOException {
         String path;
         path = firstName ? firstNamePath : lastNamePath;
-        try (BufferedReader r = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(path)))) {
+        try (BufferedReader r = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {
             String line;
             while ((line = r.readLine()) != null) {
                 line = line.trim();
@@ -56,7 +57,7 @@ public class NameDictService {
     }
 
     private void readFile(NameDict d, boolean toUpperCase) throws IOException {
-        try (BufferedReader r = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(departmentNamePath)))) {
+        try (BufferedReader r = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(departmentNamePath), StandardCharsets.UTF_8))) {
             String line;
             while ((line = r.readLine()) != null) {
                 line = line.trim();
