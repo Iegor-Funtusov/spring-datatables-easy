@@ -146,10 +146,22 @@
             tfoot = t.find('tfoot');
         }
         thead.find('tr').clone(true).appendTo(tfoot);
-
+        
+        var enums = {};
+        try {
+        	enums = getAllEnums();
+        } catch (err){
+        }
+        
         tfoot.find('tr>th').each(function (i) {
             var title = $(this).text();
+            if (i >= columnDefs.length) {
+            	return;
+            }
             var field = columnDefs[i].field;
+            if (!field) {
+            	return;
+            }
             var type = columnDefs[i].type;
             var enums = columnDefs[i].enum;
             var searchable = columnDefs[i].searchable;
@@ -294,13 +306,17 @@
                 if (this.specified) {
                     if (this.name.startsWith('dt-')) {
                         cd[this.name.substring(3)] = buildColumnAttributeValue(this.name, this.value);
+                        return;
                     }
                 }
             });
-            if (!cd.hasOwnProperty('orderable') && cd.field) {
+            if (!cd.hasOwnProperty('field')) {
+            	return;
+            }
+            if (!cd.hasOwnProperty('orderable')) {
                 cd.orderable = true;
             }
-            if (!cd.hasOwnProperty('searchable') && cd.field) {
+            if (!cd.hasOwnProperty('searchable')) {
                 cd.searchable = true;
             }
             cd.targets = [columnIndex];

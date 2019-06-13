@@ -29,14 +29,6 @@ tfoot {
     display: table-header-group;
 }
 
-td.details-control {
-    background: url('https://img.icons8.com/color/20/000000/plus.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.details-control {
-    background: url('https://img.icons8.com/color/20/000000/cancel.png') no-repeat center center;
-}
-
 .daterangepicker .ranges li.active {
     background-color: var(--daterangepicker-active-bg-color) !important;
 }
